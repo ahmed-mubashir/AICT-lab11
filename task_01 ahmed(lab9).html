@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .feedback-container {
+            background: #1b1b1b;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            width: 400px;
+            padding: 30px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .feedback-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #c50000f3;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: #323232;
+            color: #a1a1a1;
+            font-size: 14px;
+            outline: none;
+        }
+        input::placeholder, textarea::placeholder {
+            color: #a1a1a1;
+        }
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+        select {
+            cursor: pointer;
+        }
+        button {
+            background: #c50000f3;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #ff1c1c;
+        }
+        .feedback-container::before,
+        .feedback-container::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .feedback-container::before {
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+        }
+        .feedback-container::after {
+            bottom: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+        }
+        #first-name, #last-name, #country, #message {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h1>Feedback Form</h1>
+        <form action="/submit-feedback" method="post">
+            <input type="hidden" name="csrf_token" value="generate-csrf-token-here">
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first_name" placeholder="Enter your first name" required minlength="2" maxlength="50" autocomplete="off" aria-label="First Name">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last_name" placeholder="Enter your last name" required minlength="2" maxlength="50" autocomplete="off" aria-label="Last Name">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                    <option value="" disabled selected>Select your country</option>
+                    <option value="australia">Australia</option>
+                    <option value="bangladesh">Bangladesh</option>
+                    <option value="canada">Canada</option>
+                    <option value="india">India</option>
+                    <option value="pakistan">Pakistan</option>
+                    <option value="usa">United States</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write something here..." required minlength="10" maxlength="500" aria-label="Feedback Message"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
